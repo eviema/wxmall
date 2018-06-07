@@ -14,6 +14,29 @@
 </view>
 
 <!-- 如果用户信息不为空，显示登陆后页面 -->
+
+<view wx:elif="{{orderList.length > 0}}">
+  <view class='order-head'>
+    <image class="order-head-line" src="/images/line-black.png"></image>
+    <view class="order-head-text">已完成</view>
+  </view>
+  <view wx:for="{{orderList}}" wx:for-index="oindex" wx:for-item="oitem" wx:key="id" class='orders'>
+    <view wx:for="{{oitem.list}}" wx:key="id" class='order-card'>
+      <image class='oproduct-image' src="{{item.image}}"></image>
+      <view class='oproduct-info'>
+        <view class='oproduct-name'>{{item.name}}</view>
+        <view class='oproduct-detail'>
+          <view class='oproduct-price'>￥ {{item.price}}</view>
+          <view class='oproduct-count'> x {{item.count}}</view>
+        </view>
+      </view>
+      <view class='oproduct-ops'>
+        <view class='oproduct-review-btn'>评价</view>
+      </view>
+    </view>
+  </view>
+</view>
+
 <view class="order-empty" wx:else>
   <image class="empty-image" src="/images/order.png"></image>
   <view class="empty-text">暂时还没有订单</view>

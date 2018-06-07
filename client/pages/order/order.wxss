@@ -1,5 +1,78 @@
 /* pages/order/order.wxss */
 
+.order-head{
+  display: flex;
+  align-items: center;
+  padding: 26rpx 29rpx 14rpx;
+}
+.order-head-line {
+  width: 21rpx;
+  height: 34rpx;
+}
+.order-head-text{
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  line-height: 33rpx;
+  color: rgba(52, 55, 61, 0.8);
+}
+.orders{
+  margin: 0 26rpx 26rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0,0,0,0.02);
+  border-radius: 13rpx;
+}
+.order-card{
+  display: flex;
+  align-items: center;
+  margin-left: 19rpx;
+  margin-right: 23rpx;
+  height: 200rpx;
+  border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+}
+.order-card:last-child {
+  border-bottom: none;
+}
+.oproduct-image {
+  flex-shrink: 0;
+  width: 160rpx;
+  height: 160rpx;
+}
+.oproduct-info {
+  flex: 1;
+  padding: 27rpx;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.oproduct-name {
+  color: rgba(29, 29, 38, 0.8);
+}
+.oproduct-detail{
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+.oproduct-price {
+  margin-right: 30rpx;
+  font-weight: bold;
+}
+.oproduct-ops {
+  flex-shrink: 0;
+  margin-left: 59rpx;
+  padding-top: 34rpx;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.oproduct-review-btn {
+  width: 100rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #F5E069;
+  border-radius: 8rpx;
+  text-align: center;
+}
 .order-empty{
   display: flex;
   flex-direction: column;
