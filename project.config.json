@@ -1,0 +1,10 @@
+{
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wxcd3101d4edc3dc45",
+	"projectname": "wxmall",
+	"condition": {}
+}
