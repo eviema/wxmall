@@ -40,7 +40,8 @@
 				{
 					"id": -1,
 					"name": "dev order",
-					"pathName": "pages/order/order"
+					"pathName": "pages/order/order",
+					"query": ""
 				}
 			]
 		}
