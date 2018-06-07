@@ -39,3 +39,18 @@
   width: 241rpx;
   height: 241rpx;
 }
+.list-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 90rpx 0 35rpx;
+}
+.list-title-line{
+  width: 21rpx;
+  height: 34rpx;
+}
+.list-title-text{
+  margin: 0 20rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
