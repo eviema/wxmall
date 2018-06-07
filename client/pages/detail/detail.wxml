@@ -1,0 +1,40 @@
+<!--pages/detail/detail.wxml-->
+
+<!-- product card -->
+<view class='product-card'>
+  <image class='product-image' src='{{product.image}}'></image>
+  <view class='product-name'>{{product.name}}</view>
+  <view class='product-source'>{{product.source}}</view>
+  <view class='product-meta'>
+    <view class='product-money'>￥</view>
+    <view class='product-price'>{{product.price}}</view>
+  </view>
+</view>
+
+<!-- services and reviews -->
+<view class='info-card'>
+  <view class='advantage-list'>
+    <view class='advantage-item'>
+      <image class='advantage-icon' src='/images/check-yellow.png'></image>
+      <view class='advantage-text'>7天免费退货</view>
+    </view>
+    <view class='advantage-item'>
+      <image class='advantage-icon' src='/images/check-yellow.png'></image>
+      <view class='advantage-text'>24小时内发货并配送运费险</view>
+    </view>
+  </view>
+  <view class='reviews'>
+    <view class='review-btn'>
+      <view class='review-title'>已买好评</view>
+      <view class='review-count'>1条</view>
+      <image class='review-arrow' src='/images/grey-arrow.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- user operations -->
+<view class='user-ops'>
+  <view class='op-trolley'>加入购物车</view>
+  <view class='op-buy'>立即购买</view>
+</view>
+
