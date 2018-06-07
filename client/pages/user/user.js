@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    userInfo: {
+      nickName: "Evie",
+      avatarUrl: "", 
+    }
+    // userInfo: null
+  },
+
+  onTapAddress() {
+    wx.showToast({
+      title: '此功能暂未开放',
+      icon: 'none'
+    })
+  },
+
+  onTapContact() {
+    wx.showToast({
+      title: '此功能暂未开放',
+      icon: 'none'
+    })
   },
 
   /**

@@ -1,2 +1,34 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+
+<image class="bg" src="/images/bg.png"></image>
+
+<!-- 如果用户信息为空，显示登陆前页面 -->
+<view wx:if="{{!userInfo}}">
+  <view class='unlogin-card'>
+    <image class='unlogin-avatar'></image>
+    <view class='unlogin-info'>
+      <view class='unlogin-status'>未登录</view>
+      <view class='unlogin-tips'>点击微信登录后可方便购物</view>
+    </view>    
+  </view>
+  <view class='unlogin-btn'>微信登录</view>
+</view>
+
+<!-- 如果用户信息不为空，显示登陆后页面 -->
+<view class="user-card" wx:else>
+  <view class='user-info'>
+    <image class='user-avatar'></image>
+    <view class='user-name'>{{userInfo.nickName}}</view>
+  </view>
+  <view class="user-split"></view>
+  <view class='user-options'>
+    <view class='option' bindtap='onTapAddress'>
+      <view class='option-title'>收货地址</view>
+      <image class='option-arrow' src='/images/grey-arrow.png'></image>
+    </view>
+    <view class='option' bindtap='onTapContact'>
+      <view class='option-title'>联系客服</view>
+      <image class='option-arrow' src='/images/grey-arrow.png'></image>
+    </view>
+  </view>  
+</view>
