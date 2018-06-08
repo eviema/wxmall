@@ -10,6 +10,7 @@ Page({
   data: {
     product: {},
     commentValue: '',
+    commentImages: [],
   },
 
   onInput(event) {
@@ -26,42 +27,115 @@ Page({
       title: '正在发表评论...'
     })
 
-    qcloud.request({
-      url: config.service.addComment,
-      login: true,
-      method: 'PUT',
-      data: {
-        content: content,
-        product_id: this.data.product.id
-      },
-      success: result => {
-        wx.hideLoading()
+    this.uploadImage(images => {
+      qcloud.request({
+        url: config.service.addComment,
+        login: true,
+        method: 'PUT',
+        data: {
+          images,
+          content,
+          product_id: this.data.product.id
+        },
+        success: result => {
+          wx.hideLoading()
 
-        let data = result.data
+          let data = result.data
 
-        if (!data.code) {
-          wx.showToast({
-            title: '发表评论成功'
-          })
-          setTimeout(() => {
-            wx.navigateBack()
-          }, 1500)
+          if (!data.code) {
+            wx.showToast({
+              title: '发表评论成功'
+            })
 
-        } else {
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1500)
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '发表评论失败'
+            })
+          }
+        },
+        fail: () => {
+          wx.hideLoading()
+
           wx.showToast({
             icon: 'none',
             title: '发表评论失败'
           })
         }
-      },
-      fail: () => {
-        wx.hideLoading()
+      })
+    })
 
-        wx.showToast({
-          icon: 'none',
-          title: '发表评论失败'
+  },
+
+  uploadImage(cb) {
+    let commentImages = this.data.commentImages
+    let images = []
+
+    if (commentImages.length) {
+      let length = commentImages.length
+      for (let i = 0; i < length; i++) {
+        wx.uploadFile({
+          url: config.service.uploadUrl,
+          filePath: commentImages[i],
+          name: 'file',
+          success: res => {
+            let data = JSON.parse(res.data)
+            length-- 
+            // length自减不影响循环；
+            // 因js异步机制，wx.uploadFile执行前，循环已执行length次，每次加入wx.upload到执行队列
+
+            if (!data.code) {
+              images.push(data.data.imgUrl)
+            }
+
+            if (length <= 0) {
+              cb && cb(images)
+            }
+          },
+          fail: () => {
+            length--
+          }
         })
       }
+    } else {
+      cb && cb(images)
+    }
+  },
+
+  chooseImage() {
+
+    let currentImages = this.data.commentImages
+
+    wx.chooseImage({
+      count: 3,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: res => {
+
+        currentImages = currentImages.concat(res.tempFilePaths)
+        
+        let end = currentImages.length
+        let begin = Math.max(end - 3, 0)
+        currentImages = currentImages.slice(begin, end)
+
+        this.setData({
+          commentImages: currentImages
+        })
+
+      },
+    })
+  },
+
+  previewImg(event) {
+    let target = event.currentTarget
+    let src = target.dataset.src
+
+    wx.previewImage({
+      current: src,
+      urls: this.data.commentImages
     })
   },
 
