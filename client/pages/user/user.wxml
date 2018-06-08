@@ -17,7 +17,7 @@
 <!-- 如果用户信息不为空，显示登陆后页面 -->
 <view class="user-card" wx:else>
   <view class='user-info'>
-    <image class='user-avatar'></image>
+    <image class='user-avatar' src='{{userInfo.avatarUrl}}'></image>
     <view class='user-name'>{{userInfo.nickName}}</view>
   </view>
   <view class="user-split"></view>
