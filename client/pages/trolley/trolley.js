@@ -129,9 +129,13 @@ Page({
   onTapEditTrolley() {
     let isTrolleyEdit = this.data.isTrolleyEdit
 
-    this.setData({
-      isTrolleyEdit: !isTrolleyEdit
-    })
+    if (isTrolleyEdit) {
+      this.updateTrolley()
+    } else {
+      this.setData({
+        isTrolleyEdit: !isTrolleyEdit
+      })
+    }
   },
 
   adjustTrolleyProductCount(event) {
@@ -169,7 +173,13 @@ Page({
       }
     }
 
+    // 调整结算总价
     let trolleyAccount = this.calcAccount(trolleyList, trolleyCheckMap)
+
+    if (!trolleyList.length) {
+      // 当购物车为空，自动同步至服务器
+      this.updateTrolley()
+    }
 
     this.setData({
       trolleyAccount,
@@ -177,6 +187,50 @@ Page({
       trolleyCheckMap
     })
 
+  },
+
+  updateTrolley() {
+    wx.showLoading({
+      title: '更新购物车数据...',
+    })
+  
+    let trolleyList = this.data.trolleyList
+    
+    qcloud.request({
+      url: config.service.updateTrolley,
+      method: 'POST',
+      login: true,
+      data: {
+        list: trolleyList
+      },
+      success: result => {
+        wx.hideLoading()
+  
+        let data = result.data
+          
+        if (!data.code) {
+          this.setData({
+            isTrolleyEdit: false
+          })
+          wx.showToast({
+            title: '更新购物车成功'
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '更新购物车失败'
+          })
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+    
+        wx.showToast({
+          icon: 'none',
+          title: '更新购物车失败'
+        })
+      }
+    })
   },
 
   /**
