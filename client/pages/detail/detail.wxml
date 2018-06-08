@@ -26,9 +26,10 @@
   <view class='reviews' bindtap='onTapCommentEntry'>
     <view class='review-btn'>
       <view class='review-title'>已买好评</view>
-      <view class='review-count'>1条</view>
+      <view class='review-count'>{{product.commentCount}}条</view>
       <image class='review-arrow' src='/images/grey-arrow.png'></image>
     </view>
+    <view class='review-preview'>{{!product.commentCount ? "" : product.firstComment.content}}</view>
   </view>
 </view>
 

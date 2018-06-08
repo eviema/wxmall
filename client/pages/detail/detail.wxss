@@ -95,6 +95,13 @@
   width: 11rpx;
   height: 18rpx;
 }
+.review-preview {
+  margin-top: 26rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #8B8B8B;
+}
+
 .user-ops{
   position: fixed;
   bottom: 0;
