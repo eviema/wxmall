@@ -17,7 +17,7 @@ Page({
     this.getProductList()
   },
 
-  getProductList(){
+  getProductList(callback){
     wx.showLoading({
       title: '商品数据加载中...',
     })
@@ -35,6 +35,9 @@ Page({
             title: '商品数据加载失败',
           })
         }
+      },
+      complete: () => {
+        callback && callback()
       },
       error: res => {
         wx.hideLoading()
@@ -96,7 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -117,7 +120,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.getProductList(() => {
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**

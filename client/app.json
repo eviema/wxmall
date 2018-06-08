@@ -9,11 +9,12 @@
     "pages/comment/comment"
   ],
   "window":{
-    "backgroundColor":"#F6F6F6",
-    "backgroundTextStyle":"light",
+    "backgroundColor":"#ececee",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#ececee",
-    "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [
