@@ -44,6 +44,9 @@ router.post('/order', validationMiddleware, controllers.order.add)
 // 显示已购买订单
 router.get('/order', validationMiddleware, controllers.order.list)
 
+// 商品添加到购物车列表
+router.put('/trolley', validationMiddleware, controllers.trolley.add)
+
 // 获取购物车商品列表
 router.get('/trolley', validationMiddleware, controllers.trolley.list)
 
