@@ -93,9 +93,9 @@ Page({
 
   addToTrolley() {
     wx.showLoading({
-      title: '正在添加到购物车...',
+      title: '正在添加...',
     })
-  
+
     qcloud.request({
       url: config.service.addTrolley,
       login: true,
@@ -105,7 +105,7 @@ Page({
         wx.hideLoading()
     
         let data = result.data
-        console.log(data)
+
         if (!data.code) {
           wx.showToast({
             title: '已添加到购物车',
@@ -113,7 +113,7 @@ Page({
         } else {
           wx.showToast({
             icon: 'none',
-            title: '添加到购物车失败',
+            title: '添加失败',
           })
         }
       },
@@ -122,7 +122,7 @@ Page({
     
         wx.showToast({
           icon: 'none',
-          title: '添加到购物车失败',
+          title: '添加失败',
         })
       }
     })
