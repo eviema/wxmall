@@ -23,7 +23,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -42,6 +42,11 @@
 					"name": "dev order",
 					"pathName": "pages/order/order",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "dev trolley",
+					"pathName": "pages/trolley/trolley"
 				}
 			]
 		}
