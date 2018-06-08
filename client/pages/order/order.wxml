@@ -31,7 +31,7 @@
         </view>
       </view>
       <view class='oproduct-ops'>
-        <view class='oproduct-review-btn'>评价</view>
+        <navigator class="oproduct-review-btn" url="/pages/add-comment/add-comment?id={{item.product_id}}&price={{item.price}}&name={{item.name}}&image={{item.image}}">评价</navigator>
       </view>
     </view>
   </view>
