@@ -44,4 +44,7 @@ router.post('/order', validationMiddleware, controllers.order.add)
 // 显示已购买订单
 router.get('/order', validationMiddleware, controllers.order.list)
 
+// 获取购物车商品列表
+router.get('/trolley', validationMiddleware, controllers.trolley.list)
+
 module.exports = router
