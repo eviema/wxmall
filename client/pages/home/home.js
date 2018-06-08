@@ -46,6 +46,10 @@ Page({
   },
 
   addToTrolley(event) {
+    wx.showLoading({
+      title: '正在添加...',
+    })
+    
     let productId = event.currentTarget.dataset.id
     
     if (productId) {
