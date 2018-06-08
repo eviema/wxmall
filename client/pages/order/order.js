@@ -11,40 +11,40 @@ Page({
   data: {
     userInfo: null,
     orderList: [
-      {
-        id: 0,
-        list: [{
-          count: 1,
-          image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product10.jpg',
-          name: '商品1',
-          price: 50.5,
-        }]
-      },
-      {
-        id: 1,
-        list: [{
-          count: 1,
-          image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product2.jpg',
-          name: '商品1',
-          price: 50.5,
-        },
-        {
-          count: 1,
-          image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product10.jpg',
-          name: '商品2',
-          price: 50.5,
-        }
-        ]
-      },
-      {
-        id: 2,
-        list: [{
-          count: 1,
-          image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product4.jpg',
-          name: '商品2',
-          price: 50.5,
-        }]
-      }
+      // {
+      //   id: 0,
+      //   list: [{
+      //     count: 1,
+      //     image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product10.jpg',
+      //     name: '商品1',
+      //     price: 50.5,
+      //   }]
+      // },
+      // {
+      //   id: 1,
+      //   list: [{
+      //     count: 1,
+      //     image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product2.jpg',
+      //     name: '商品1',
+      //     price: 50.5,
+      //   },
+      //   {
+      //     count: 1,
+      //     image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product10.jpg',
+      //     name: '商品2',
+      //     price: 50.5,
+      //   }
+      //   ]
+      // },
+      // {
+      //   id: 2,
+      //   list: [{
+      //     count: 1,
+      //     image: 'https://product-1256882508.cos.ap-guangzhou.myqcloud.com/product4.jpg',
+      //     name: '商品2',
+      //     price: 50.5,
+      //   }]
+      // }
     ], // 订单列表
   },
 
@@ -53,6 +53,42 @@ Page({
       success: ({ userInfo }) => {
         this.setData({
           userInfo
+        })
+      }
+    })
+
+    this.getOrder()
+  },
+
+  getOrder() {
+    wx.showLoading({
+      title: '刷新订单数据...',
+    })
+
+    qcloud.request({
+      url: config.service.orderList,
+      login: true,
+      success: res => {
+        wx.hideLoading()
+
+        let data = res.data
+
+        if (!data.code) {
+          this.setData({
+            orderList: data.data
+          })
+        }
+        else {
+          wx.showToast({
+            title: '刷新订单数据失败',
+          })
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+
+        wx.showToast({
+          title: '刷新订单数据失败',
         })
       }
     })
@@ -81,6 +117,7 @@ Page({
         this.setData({
           userInfo
         })
+        this.getOrder()
       }
     })
   },
