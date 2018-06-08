@@ -72,6 +72,7 @@ Page({
     let isTrolleyTotalCheck = this.data.isTrolleyTotalCheck
     let numTotalProduct
     let numCheckedProduct = 0
+    let trolleyAccount = this.data.trolleyAccount
 
     // 单项商品被选中/取消
     trolleyCheckMap[checkId] = !trolleyCheckMap[checkId]
@@ -84,9 +85,12 @@ Page({
 
     isTrolleyTotalCheck = (numTotalProduct === numCheckedProduct) ? true : false
 
+    trolleyAccount = this.calcAccount(trolleyList, trolleyCheckMap)
+
     this.setData({
       trolleyCheckMap,
-      isTrolleyTotalCheck
+      isTrolleyTotalCheck,
+      trolleyAccount
     })
   },
 
@@ -94,6 +98,7 @@ Page({
     let trolleyCheckMap = this.data.trolleyCheckMap
     let trolleyList = this.data.trolleyList
     let isTrolleyTotalCheck = this.data.isTrolleyTotalCheck
+    let trolleyAccount = this.data.trolleyAccount
 
     // 全选按钮被选中/取消
     isTrolleyTotalCheck = !isTrolleyTotalCheck
@@ -103,8 +108,23 @@ Page({
       trolleyCheckMap[product.id] = isTrolleyTotalCheck
     })
 
+    trolleyAccount = this.calcAccount(trolleyList, trolleyCheckMap)
+
     this.setData({
       isTrolleyTotalCheck,
+      trolleyCheckMap,
+      trolleyAccount
+    })
+  },
+
+  calcAccount(trolleyList, trolleyCheckMap) {
+    let account = 0
+    trolleyList.forEach(product => {
+      account = trolleyCheckMap[product.id] ? account + product.price * product.count : account
+    })
+
+    return account
+  },
       trolleyCheckMap
     })
   },
