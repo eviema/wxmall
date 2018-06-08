@@ -101,7 +101,7 @@ Page({
       login: true,
       method: 'PUT',
       data: {
-        id: this.data.product
+        id: this.data.product.id
       },
       success: result => {
         wx.hideLoading()
