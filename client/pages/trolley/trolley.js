@@ -125,6 +125,14 @@ Page({
 
     return account
   },
+
+  onTapEditTrolley() {
+    let isTrolleyEdit = this.data.isTrolleyEdit
+
+    this.setData({
+      isTrolleyEdit: !isTrolleyEdit
+    })
+  },
       trolleyCheckMap
     })
   },
